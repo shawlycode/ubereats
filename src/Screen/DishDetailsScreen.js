@@ -3,46 +3,44 @@ import { StyleSheet, Text, View } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import restaurants from "../../assets/data/restaurants.json";
 
-const dish = restaurants[0].dishes[0];
-const DishDetailsScreen = () => {
-  const [quantity, setQuantity] = useState(0);
+const dish = restaurants[1].dishes[2];
 
-  const onMinus = () => {
-    {
-      if (quantity > 1) setQuantity(quantity - 1);
-    }
-  };
-  const onPlus = () => {
-    setQuantity(quantity + 1);
-  };
+const DishDetailsScreen = () => {
+  const [quantity, setQuantity] = useState(1);
   const getTotal = () => {
     return (dish.price * quantity).toFixed(2);
+  };
+  const onMinus = () => {
+    if (quantity > 1) return setQuantity(quantity - 1);
+  };
+  const onPlus = () => {
+    return setQuantity(quantity + 1);
   };
   return (
     <View style={styles.container}>
       <Ionicons name="arrow-back" size={30} color="black" style={styles.icon} />
-      <View>
+      <View style={{ paddingHorizontal: 10 }}>
         <Text style={styles.name}>{dish.name}</Text>
         <Text style={styles.desc}>{dish.description}</Text>
-        <View style={styles.btn}>
-          <Feather
-            name="minus-circle"
-            size={50}
-            color="black"
-            onPress={onMinus}
-          />
-          <Text style={styles.qty}>{quantity}</Text>
-          <Feather
-            name="plus-circle"
-            size={50}
-            color="black"
-            onPress={onPlus}
-          />
-        </View>
+      </View>
+      <View style={styles.btn}>
+        <Feather
+          name="minus-circle"
+          size={50}
+          color="#495057"
+          onPress={onMinus}
+        />
+        <Text style={styles.qty}>{quantity}</Text>
+        <Feather
+          name="plus-circle"
+          size={50}
+          color="#495057"
+          onPress={onPlus}
+        />
       </View>
       <View style={styles.button}>
         <Text style={styles.text}>
-          Add {quantity} to Basket (&#x20B5; {getTotal()})
+          Add {quantity} to basket &#x20B5; {getTotal()}
         </Text>
       </View>
     </View>
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   icon: {
-    marginRight: 320,
+    marginRight: 300,
     marginBottom: 30,
   },
   name: {
