@@ -1,10 +1,15 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-const RestaurantItem = ({ restaurant }) => {
+const RestaurantItem = ({ restaurant, index }) => {
+  const navigation = useNavigation();
+  const onPress = () => {
+    navigation.navigate("Restaurant", { item: index });
+  };
   return (
-    <View style={styles.restaurantsContainer}>
+    <TouchableOpacity onPress={onPress} style={styles.restaurantsContainer}>
       <Image
         source={{
           uri: restaurant.image,
@@ -36,7 +41,7 @@ const RestaurantItem = ({ restaurant }) => {
           <Text style={styles.Subtitle1}>{restaurant.rating}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

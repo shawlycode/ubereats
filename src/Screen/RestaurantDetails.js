@@ -19,7 +19,7 @@ const RestaurantDetails = () => {
         ListHeaderComponent={Header}
         showsVerticalScrollIndicator={false}
         data={restaurant.dishes}
-        renderItem={({ item }) => <DishListItem dish={item} />}
+        renderItem={({ item, index }) => <DishListItem dish={item} />}
       />
       <StatusBar barStyle="light-content" />
     </View>

@@ -1,20 +1,25 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import React, { useState } from "react";
 import restaurants from "../../assets/data/restaurants.json";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-const restaurant = restaurants[0];
+const restaurant = restaurants[1];
 const Header = () => {
+  const navigation = useNavigation();
+  const goBack = () => {
+    navigation.goBack();
+  };
   return (
     <View>
       <View>
         <Image source={{ uri: restaurant.image }} style={styles.image} />
-        <Ionicons
-          name="arrow-back-circle-sharp"
-          size={40}
-          color="white"
+        <Pressable
           style={{ position: "absolute", top: 40, left: 15 }}
-        />
+          onPress={goBack}
+        >
+          <Ionicons name="arrow-back-circle-sharp" size={50} color="white" />
+        </Pressable>
       </View>
       <Text style={styles.title}>{restaurant.name}</Text>
       <View
