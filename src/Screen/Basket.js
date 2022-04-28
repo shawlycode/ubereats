@@ -1,53 +1,40 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Feather, Ionicons } from "@expo/vector-icons";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import restaurants from "../../assets/data/restaurants.json";
+import BasketDishItem from "../Components/BasketDishItem";
 
-const dish = restaurants[1].dishes[2];
+const restaurant = restaurants[0];
 
-const DishDetailsScreen = () => {
-  const [quantity, setQuantity] = useState(1);
-  const getTotal = () => {
-    return (dish.price * quantity).toFixed(2);
-  };
-  const onMinus = () => {
-    if (quantity > 1) return setQuantity(quantity - 1);
-  };
-  const onPlus = () => {
-    return setQuantity(quantity + 1);
-  };
+const Basket = () => {
   return (
     <View style={styles.container}>
       <Ionicons name="arrow-back" size={30} color="black" style={styles.icon} />
       <View style={{ paddingHorizontal: 10 }}>
-        <Text style={styles.name}>{dish.name}</Text>
-        <Text style={styles.desc}>{dish.description}</Text>
+        <Text style={styles.name}>{restaurant.name}</Text>
       </View>
-      <View style={styles.btn}>
-        <Feather
-          name="minus-circle"
-          size={50}
-          color="#495057"
-          onPress={onMinus}
-        />
-        <Text style={styles.qty}>{quantity}</Text>
-        <Feather
-          name="plus-circle"
-          size={50}
-          color="#495057"
-          onPress={onPlus}
-        />
-      </View>
+      <Text
+        style={{
+          fontWeight: "500",
+          fontSize: 20,
+          color: "grey",
+          marginVertical: 15,
+        }}
+      >
+        Your Items
+      </Text>
+      <FlatList
+        data={restaurant.dishes}
+        renderItem={({ item }) => <BasketDishItem basketDish={item} />}
+      />
       <View style={styles.button}>
-        <Text style={styles.text}>
-          Add {quantity} to basket &#xb7; &#xa0; &#x20B5; {getTotal()}
-        </Text>
+        <Text style={styles.text}>Create Order</Text>
       </View>
     </View>
   );
 };
 
-export default DishDetailsScreen;
+export default Basket;
 
 const styles = StyleSheet.create({
   container: {
@@ -59,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   name: {
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: "bold",
     marginVertical: 20,
   },
@@ -94,6 +81,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     color: "#fff",
-    fontWeight: "bold",
+    fontWeight: "600",
   },
 });
