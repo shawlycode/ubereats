@@ -27,6 +27,27 @@ const Basket = () => {
         data={restaurant.dishes}
         renderItem={({ item }) => <BasketDishItem basketDish={item} />}
       />
+      <View style={{ marginBottom: 40 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            marginHorizontal: 10,
+            marginVertical: 10,
+          }}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "600" }}>SubTotal</Text>
+          <Text style={{ marginLeft: "auto", fontSize: 18 }}> &#x20B5;</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            marginHorizontal: 10,
+          }}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "600" }}>Total</Text>
+          <Text style={{ marginLeft: "auto", fontSize: 18 }}> &#x20B5;</Text>
+        </View>
+      </View>
       <View style={styles.button}>
         <Text style={styles.text}>Create Order</Text>
       </View>
@@ -40,6 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50,
+    marginHorizontal: 10,
   },
   icon: {
     marginRight: 300,

@@ -7,16 +7,14 @@ import { useNavigation } from "@react-navigation/native";
 const restaurant = restaurants[1];
 const Header = () => {
   const navigation = useNavigation();
-  const goBack = () => {
-    navigation.goBack();
-  };
+
   return (
     <View>
       <View>
         <Image source={{ uri: restaurant.image }} style={styles.image} />
         <Pressable
           style={{ position: "absolute", top: 40, left: 15 }}
-          onPress={goBack}
+          onPress={() => navigation.goBack()}
         >
           <Ionicons name="arrow-back-circle-sharp" size={50} color="white" />
         </Pressable>

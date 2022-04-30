@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import restaurants from "../../assets/data/restaurants.json";
-
+import { useNavigation } from "@react-navigation/native";
 const dish = restaurants[1].dishes[2];
 
 const DishDetailsScreen = () => {
+  const navigation = useNavigation();
+  const basket = () => {
+    return navigation.navigate("BasketItem", { id: dish.id });
+  };
   const [quantity, setQuantity] = useState(1);
   const getTotal = () => {
     return (dish.price * quantity).toFixed(2);
@@ -18,7 +22,13 @@ const DishDetailsScreen = () => {
   };
   return (
     <View style={styles.container}>
-      <Ionicons name="arrow-back" size={30} color="black" style={styles.icon} />
+      <Ionicons
+        name="arrow-back"
+        size={30}
+        color="black"
+        style={styles.icon}
+        onPress={() => navigation.goBack()}
+      />
       <View style={{ paddingHorizontal: 10 }}>
         <Text style={styles.name}>{dish.name}</Text>
         <Text style={styles.desc}>{dish.description}</Text>
@@ -38,11 +48,11 @@ const DishDetailsScreen = () => {
           onPress={onPlus}
         />
       </View>
-      <View style={styles.button}>
+      <Pressable style={styles.button} onPress={basket}>
         <Text style={styles.text}>
           Add {quantity} to basket &#xb7; &#xa0; &#x20B5; {getTotal()}
         </Text>
-      </View>
+      </Pressable>
     </View>
   );
 };
@@ -53,6 +63,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50,
+    marginHorizontal: 10,
   },
   icon: {
     marginRight: 300,

@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  StatusBar,
-  FlatList,
-} from "react-native";
+import { StyleSheet, Text, View, StatusBar, FlatList } from "react-native";
 import restaurants from "../../assets/data/restaurants.json";
 import DishListItem from "../Components/DishListItem";
 import Header from "./Header";
@@ -20,6 +13,7 @@ const RestaurantDetails = () => {
         showsVerticalScrollIndicator={false}
         data={restaurant.dishes}
         renderItem={({ item, index }) => <DishListItem dish={item} />}
+        keyExtractor={(item) => item.name}
       />
       <StatusBar barStyle="light-content" />
     </View>

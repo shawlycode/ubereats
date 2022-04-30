@@ -1,5 +1,8 @@
+import { View, Text, StyleSheet } from "react-native";
 import Router from "./src/Navigation/Router";
 
-export default function App() {
+const App = () => {
   return <Router />;
-}
+};
+
+export default App;
