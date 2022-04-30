@@ -3,13 +3,14 @@ import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const RestaurantItem = ({ restaurant, index }) => {
+const RestaurantItem = ({ restaurant }) => {
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate("Restaurant", { item: index });
+    return navigation.navigate("Restaurant");
   };
+
   return (
-    <TouchableOpacity onPress={onPress} style={styles.restaurantsContainer}>
+    <TouchableOpacity style={styles.restaurantsContainer} onPress={onPress}>
       <Image
         source={{
           uri: restaurant.image,

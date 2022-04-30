@@ -1,13 +1,16 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
-
+import { StyleSheet, Text, View } from "react-native";
 const BasketDishItem = ({ basketDish }) => {
   return (
-    <View style={styles.qtyContainer}>
-      <Text style={styles.num}>1</Text>
-      <Text style={{ fontWeight: "600", fontSize: 19 }}>{basketDish.name}</Text>
-      <Text style={{ marginLeft: "auto", fontSize: 18 }}>
-        &#x20B5; {basketDish.price}
-      </Text>
+    <View>
+      <View style={styles.qtyContainer}>
+        <Text style={styles.num}>1</Text>
+        <Text style={{ fontWeight: "600", fontSize: 19 }}>
+          {basketDish?.name}
+        </Text>
+        <Text style={{ marginLeft: "auto", fontSize: 18 }}>
+          &#x20B5; {basketDish?.price}
+        </Text>
+      </View>
     </View>
   );
 };
